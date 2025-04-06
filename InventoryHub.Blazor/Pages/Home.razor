@@ -1,0 +1,64 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Reflective Summary</h1>
+
+<h2>Overview</h2>
+<p>
+    For the InventoryHub capstone project, I built a full-stack application using a Minimal API as the backend and a Blazor WebAssembly front-end. The application demonstrates seamless integration between these two layers: the backend returns JSON-compatible data structures, and the front-end fetches and displays that data. A key aspect was handling cross-origin requests by running the API and Blazor app on different ports and managing CORS appropriately.
+</p>
+
+<h2>Project Setup</h2>
+<ul>
+    <li><strong>Backend (Minimal API):</strong>
+        <ul>
+            <li><strong>Port:</strong> http://localhost:5000</li>
+            <li><strong>Functionality:</strong> Exposes an endpoint <code>/api/products</code> that returns product data (e.g., Laptop, Headphones) in JSON format.</li>
+            <li><strong>CORS Management:</strong> Configured with a CORS policy to allow requests from different origins.</li>
+        </ul>
+    </li>
+    <li><strong>Front-end (Blazor WebAssembly):</strong>
+        <ul>
+            <li><strong>Port:</strong> http://localhost:5050</li>
+            <li><strong>Integration:</strong> The Blazor component <code>FetchProducts.razor</code> calls the backend endpoint to retrieve and display product data.</li>
+            <li><strong>Configuration:</strong> The <code>HttpClient</code> is set with the backend's base address for proper API communication.</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>How Copilot Assisted</h2>
+<ul>
+    <li><strong>Integration Code Generation:</strong> Provided initial boilerplate code for both the Minimal API and the Blazor front-end, including dependency injection for <code>HttpClient</code>.</li>
+    <li><strong>Debugging & Troubleshooting:</strong> Offered code snippets and guidance on configuring CORS and setting the correct base address for <code>HttpClient</code>.</li>
+    <li><strong>Performance & Best Practices:</strong> Suggested improvements such as reducing redundant API calls and implementing caching strategies on the back-end.</li>
+</ul>
+
+<h2>Challenges and Solutions</h2>
+<ul>
+    <li><strong>Multiple Project Configuration:</strong> Managing two separate projects running on different ports (API on 5000 and Blazor on 5050) and ensuring smooth communication between them.</li>
+    <li><strong>CORS Management:</strong> Configuring CORS correctly to prevent cross-origin errors when backend and front-end are served from different origins.</li>
+    <li><strong>Data Structuring:</strong> Ensuring that the JSON data from the backend is correctly deserialized and displayed on the Blazor front-end.</li>
+</ul>
+
+<h2>Lessons Learned</h2>
+<ul>
+    <li><strong>Full-Stack Integration:</strong> Importance of configuring environments for the front-end and back-end separately.</li>
+    <li><strong>Effective Use of Copilot:</strong> Accelerated development by generating boilerplate code and providing debugging suggestions.</li>
+    <li><strong>Performance Considerations:</strong> Optimizing API calls and utilizing caching strategies to improve application performance.</li>
+</ul>
+
+<h2>Conclusion</h2>
+<p>
+    Building InventoryHub provided valuable insights into full-stack development using .NET and Blazor. Running the backend on port 5000 and the front-end on port 5050, coupled with proper CORS management, ensured a robust integration where data flows seamlessly. Copilot proved to be an invaluable tool in guiding best practices and enhancing development efficiency.
+</p>
+
+<p>
+    Below are screenshots of the API response and the Blazor UI displaying product data for additional context:
+</p>
+<div>
+    <img src="images/api_response.png" alt="API Response Screenshot" style="max-width:100%; height:auto;" />
+</div>
+<div>
+    <img src="images/blazor-ui.png" alt="Blazor UI Screenshot" style="max-width:100%; height:auto;" />
+</div>

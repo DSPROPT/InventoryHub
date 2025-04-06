@@ -1,0 +1,54 @@
+@page "/fetchproducts"
+@inject HttpClient Http
+
+<h3>Product List</h3>
+
+@if (products == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <ul>
+        @foreach (var product in products)
+        {
+            <li>@product.Name - $@product.Price</li>
+        }
+    </ul>
+}
+
+@code {
+    private Product[]? products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Call the Minimal API endpoint
+            var response = await Http.GetAsync("http://localhost:5000/api/products");
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Deserialize JSON into a Product array
+                products = await response.Content.ReadFromJsonAsync<Product[]>();
+            }
+            else
+            {
+                Console.Error.WriteLine($"Failed to fetch products. Status: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+
+    // Define a Product class matching your API data
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = default!;
+        public double Price { get; set; }
+        public int Stock { get; set; }
+    }
+}
